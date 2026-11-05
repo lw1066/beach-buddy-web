@@ -1,0 +1,35 @@
+{
+  "expo": {
+    "name": "Beach Buddy",
+    "slug": "expoWater",
+    "version": "1.0.9",
+    "orientation": "portrait",
+    "icon": "./assets/expo-images/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/expo-images/splash.png",
+      "resizeMode": "cover",
+      "backgroundColor": "#ffff00"
+    },
+    "assetBundlePatterns": ["assets/*", "assets/markers/*"],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.lw1066.expoWater"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/expo-images/adaptive-icon.png",
+        "backgroundColor": "#ff0000"
+      },
+      "package": "com.lw1066.expoWater"
+    },
+    "web": {
+      "favicon": "./assets/expo-images/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "dddfdc31-b102-4953-a36b-511cccfd13a1"
+      }
+    }
+  }
+}

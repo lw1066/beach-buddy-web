@@ -1,0 +1,98 @@
+{
+  "api": {
+    "dataFetcher": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "tideInfoFetcher"
+        },
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "fetchPlacesData"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
+    }
+  },
+  "auth": {
+    "beachbuddysecure": {
+      "dependsOn": [],
+      "frontendAuthConfig": {
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyCharacters": [],
+          "passwordPolicyMinLength": 8
+        },
+        "signupAttributes": [
+          "EMAIL"
+        ],
+        "socialProviders": [],
+        "usernameAttributes": [],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito",
+      "serviceType": "managed"
+    }
+  },
+  "function": {
+    "fetchPlacesData": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "tideInfoFetcher": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_fetchPlacesData_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "fetchPlacesData"
+        }
+      ]
+    },
+    "AMPLIFY_function_fetchPlacesData_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "fetchPlacesData"
+        }
+      ]
+    },
+    "AMPLIFY_function_tideInfoFetcher_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "tideInfoFetcher"
+        }
+      ]
+    },
+    "AMPLIFY_function_tideInfoFetcher_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "tideInfoFetcher"
+        }
+      ]
+    }
+  }
+}

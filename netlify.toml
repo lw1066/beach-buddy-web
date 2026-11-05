@@ -1,0 +1,28 @@
+[build]
+  command = "npx expo export --platform web"
+  publish = "dist"
+
+[dev]
+  command = "npm run web"
+  targetPort = 8081
+  port = 8888
+  framework = "#custom"
+  autoLaunch = false
+
+[[redirects]]
+  from = "/ea/beaches"
+  to = "https://environment.data.gov.uk/doc/bathing-water.json"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/ea/profiles/*"
+  to = "https://environment.data.gov.uk/data/bathing-water-profile/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/ea/forecast-history/*"
+  to = "https://environment.data.gov.uk/doc/bathing-water-quality/stp-risk-prediction/bathing-water/:splat"
+  status = 200
+  force = true

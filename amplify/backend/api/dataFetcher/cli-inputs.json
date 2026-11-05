@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "paths": {
+    "/tides/{station}": {
+      "name": "/tides/{station}",
+      "lambdaFunction": "tideInfoFetcher",
+      "permissions": {
+        "setting": "private",
+        "auth": [
+          "read"
+        ]
+      }
+    },
+    "/info": {
+      "name": "/info",
+      "lambdaFunction": "fetchPlacesData",
+      "permissions": {
+        "setting": "private",
+        "auth": [
+          "read"
+        ]
+      }
+    }
+  }
+}
