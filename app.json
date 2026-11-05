@@ -11,7 +11,10 @@
       "resizeMode": "cover",
       "backgroundColor": "#ffff00"
     },
-    "assetBundlePatterns": ["assets/*", "assets/markers/*"],
+    "assetBundlePatterns": [
+      "assets/*",
+      "assets/markers/*"
+    ],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.lw1066.expoWater"
@@ -30,6 +33,9 @@
       "eas": {
         "projectId": "dddfdc31-b102-4953-a36b-511cccfd13a1"
       }
-    }
+    },
+    "plugins": [
+      "expo-asset"
+    ]
   }
 }
