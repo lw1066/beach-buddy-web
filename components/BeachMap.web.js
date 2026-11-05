@@ -1,31 +1,37 @@
 import React, { useEffect, useState } from "react";
 import { MapContainer, Marker, TileLayer, Tooltip } from "react-leaflet";
 import { icon } from "leaflet";
-import { Asset } from "expo-asset";
 import "leaflet/dist/leaflet.css";
-import { beachMarkerSetter } from "../utils/beachMarkerSetter";
 import BeachPopup from "./BeachPopup.web";
 import { getForecastStatus } from "../utils/forecastStatus.web";
 import { getBeachColours } from "../utils/beachColours.web";
 
-// Use the same rating and warning images as the native map.
+// Public files give Leaflet stable URLs in development and exported builds.
+const markerFiles = new Map([
+  ["Excellent", "greenMarker.png"],
+  ["Good", "blueMarker.png"],
+  ["Sufficient", "orangeMarker.png"],
+  ["Poor", "brownMarker.png"],
+  ["No rating available", "grayMarker.png"],
+]);
 const markerIcons = new Map();
 
 function getMarkerIcon(rating, riskLevel, scale = 1) {
-  const asset = Asset.fromModule(beachMarkerSetter(rating, riskLevel));
-
-  const key = `${asset.uri}:${scale}`;
+  const filename =
+    riskLevel === "increased"
+      ? "warning.png"
+      : markerFiles.get(rating) ?? "greenMarker.png";
+  const iconUrl = `/markers/${filename}`;
+  const key = `${iconUrl}:${scale}`;
   if (!markerIcons.has(key)) {
     const width = 40 * scale;
-    const height =
-      asset.width > 0 && asset.height > 0
-        ? (width * asset.height) / asset.width
-        : 40 * scale;
+    // All six marker images are square.
+    const height = width;
 
     markerIcons.set(
       key,
       icon({
-        iconUrl: asset.uri,
+        iconUrl,
         iconSize: [width, height],
         // Match the native map's anchor: { x: 0.5, y: 0.25 }.
         iconAnchor: [width / 2, height / 4],
